@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left side: Form and navigation -->
+        <div class="col-md-6">
+            <form [formGroup]="form" class="mb-4">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Robot Name</label>
+                    <input id="name" formControlName="name" class="form-control" placeholder="Enter robot name" />
+                    <div *ngIf="isInvalid('name')" class="invalid-feedback">
+                        Robot name is required.
+                    </div>
+                </div>
+            </form>
+
+            <nav class="nav mb-4">
+                <a routerLink="tab1" class="nav-link btn me-2">Technical Specs
+                    @if (form.controls.technicalSpecs.invalid) {
+                    <span style="color: red">*</span>
+                    }
+                </a>
+                <a routerLink="tab2" class="nav-link btn ">Capabilities
+                    @if (form.controls.capabilities.invalid) {
+                    <span style="color: red">*</span>
+                    }
+                </a>
+            </nav>
+
+            <div class="container mb-4">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-success" [disabled]="!isFormValid()"
+                    (click)="onSave()">Save</button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h5>Form Status</h5>
+            <ul class="list-group">
+                <!-- General Form Info -->
+                <li class="list-group-item">
+                    <strong>Form Value:</strong> {{ form.value | json }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Form Valid:</strong> {{ form.valid }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Form Dirty:</strong> {{ form.dirty }}
+                </li>
+
+                <!-- Technical Specs Group Info -->
+                <li class="list-group-item">
+                    <strong>Technical Specs Value:</strong> {{ form.get('technicalSpecs')?.value | json }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Technical Specs Valid:</strong> {{ form.get('technicalSpecs')?.valid }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Technical Specs Dirty:</strong> {{ form.get('technicalSpecs')?.dirty }}
+                </li>
+
+                <!-- Capabilities Group Info -->
+                <li class="list-group-item">
+                    <strong>Capabilities Value:</strong> {{ form.get('capabilities')?.value | json }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Capabilities Valid:</strong> {{ form.get('capabilities')?.valid }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Capabilities Dirty:</strong> {{ form.get('capabilities')?.dirty }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

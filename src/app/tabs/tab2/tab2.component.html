@@ -1,0 +1,34 @@
+<form [formGroup]="form" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="aiLevel" class="form-label">AI Level</label>
+        <input id="aiLevel" type="number" formControlName="aiLevel" class="form-control"
+            [class.is-invalid]="form.controls.aiLevel.invalid" />
+        @if (form.controls.aiLevel.hasError('required')) {
+        <div class="invalid-feedback">
+            AI Level is required.
+        </div>
+        }
+        @if (form.controls.aiLevel.hasError('aiLevelInvalid')) {
+        <div class="invalid-feedback">
+            If Model is less than 10, AI Level cannot be more than 5.
+        </div>
+        }
+        <div>
+            {{ form.controls.aiLevel.errors | json }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="programmingLanguages" class="form-label">Programming Languages</label>
+        <input id="programmingLanguages" type="text" formControlName="programmingLanguages" class="form-control"
+            [class.is-invalid]="isInvalid('programmingLanguages')" />
+        <div *ngIf="isInvalid('programmingLanguages')" class="invalid-feedback">
+            At least one programming language is required.
+        </div>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input id="canFly" type="checkbox" formControlName="canFly" class="form-check-input" />
+        <label for="canFly" class="form-check-label">Can Fly</label>
+    </div>
+</form>

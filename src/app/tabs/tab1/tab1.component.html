@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="model" class="form-label">Model</label>
+        <input id="model" type="number" formControlName="model" class="form-control"
+            [class.is-invalid]="isInvalid('model')" />
+        <div *ngIf="isInvalid('model')" class="invalid-feedback">
+            Model is required.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="weight" class="form-label">Weight</label>
+        <input id="weight" type="number" formControlName="weight" class="form-control"
+            [class.is-invalid]="isInvalid('weight')" />
+        <div *ngIf="isInvalid('weight')" class="invalid-feedback">
+            Weight is required.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="batteryLife" class="form-label">Battery Life</label>
+        <input id="batteryLife" type="number" formControlName="batteryLife" class="form-control"
+            [class.is-invalid]="isInvalid('batteryLife')" />
+        <div *ngIf="isInvalid('batteryLife')" class="invalid-feedback">
+            Battery Life is required.
+        </div>
+    </div>
+</form>
