@@ -13,16 +13,8 @@
             </form>
 
             <nav class="nav mb-4">
-                <a routerLink="tab1" class="nav-link btn me-2">Technical Specs
-                    @if (form.controls.technicalSpecs.invalid) {
-                    <span style="color: red">*</span>
-                    }
-                </a>
-                <a routerLink="tab2" class="nav-link btn ">Capabilities
-                    @if (form.controls.capabilities.invalid) {
-                    <span style="color: red">*</span>
-                    }
-                </a>
+                <a routerLink="tab1" class="nav-link btn me-2" [class.has-errors]="form.controls.technicalSpecs.invalid">Technical Specs</a>
+                <a routerLink="tab2" class="nav-link btn" [class.has-errors]="form.controls.capabilities.invalid">Capabilities</a>
             </nav>
 
             <div class="container mb-4">
@@ -40,7 +32,8 @@
             <ul class="list-group">
                 <!-- General Form Info -->
                 <li class="list-group-item">
-                    <strong>Form Value:</strong> {{ form.value | json }}
+                    <strong>Form Value:</strong> 
+                    <p>{{ form.value | json }}</p>
                 </li>
                 <li class="list-group-item">
                     <strong>Form Valid:</strong> {{ form.valid }}
@@ -49,26 +42,9 @@
                     <strong>Form Dirty:</strong> {{ form.dirty }}
                 </li>
 
-                <!-- Technical Specs Group Info -->
                 <li class="list-group-item">
-                    <strong>Technical Specs Value:</strong> {{ form.get('technicalSpecs')?.value | json }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Technical Specs Valid:</strong> {{ form.get('technicalSpecs')?.valid }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Technical Specs Dirty:</strong> {{ form.get('technicalSpecs')?.dirty }}
-                </li>
-
-                <!-- Capabilities Group Info -->
-                <li class="list-group-item">
-                    <strong>Capabilities Value:</strong> {{ form.get('capabilities')?.value | json }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Capabilities Valid:</strong> {{ form.get('capabilities')?.valid }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Capabilities Dirty:</strong> {{ form.get('capabilities')?.dirty }}
+                    <strong>Robot saved data:</strong> 
+                    <p>{{ robotData | json }}</p>
                 </li>
             </ul>
         </div>

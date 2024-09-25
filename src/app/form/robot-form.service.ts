@@ -26,7 +26,6 @@ export class RobotFormService {
         })
     }, { validators: modelToAiLevelValidator() }); 
 
-
     getFormInit() {
         this.loadData();
         return this.robotForm;

@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RobotFormService } from '../../form/robot-form.service';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -12,7 +11,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [RouterLink, RouterOutlet, ReactiveFormsModule, CommonModule],
   templateUrl: './tabs-main.component.html',
   styleUrl: './tabs-main.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsMainComponent {
   private cdr = inject(ChangeDetectorRef);
@@ -20,6 +18,8 @@ export class TabsMainComponent {
 
   private robotFormService = inject(RobotFormService);
   form = this.robotFormService.getFormInit();
+
+  robotData = this.robotFormService.robotData;
 
   constructor() {
     this.form.controls.capabilities.statusChanges
@@ -29,7 +29,6 @@ export class TabsMainComponent {
       })
   }
 
-  // Check if the form is valid (main and subgroups)
   isFormValid(): boolean {
     return this.form.valid;
   }
@@ -44,8 +43,8 @@ export class TabsMainComponent {
 
   onSave() {
     if (this.isFormValid()) {
-      console.log('Robot Data:', this.form.value);
-      alert('Robot data saved successfully!');
+      this.robotFormService.saveData();
+      this.robotData = this.robotFormService.robotData;
     }
   }
 

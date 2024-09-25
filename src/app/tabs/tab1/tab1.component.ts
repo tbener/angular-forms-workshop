@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RobotFormService } from '../../form/robot-form.service';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './tab1.component.html',
   styleUrl: './tab1.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Tab1Component {
   private robotFormService = inject(RobotFormService);

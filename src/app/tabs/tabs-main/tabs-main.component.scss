@@ -1,0 +1,4 @@
+.has-errors::after {
+    content: ' ***';
+    color: red;
+}
