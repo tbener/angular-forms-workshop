@@ -17,4 +17,9 @@ export class Tab1Component {
   isInvalid(fieldName: string): boolean {
     return this.form.get(fieldName)?.invalid && this.form.get(fieldName)?.touched || false;
   }
+
+  onSave() {
+    this.robotFormService.saveSubForm(this.form);
+  }
+
 }

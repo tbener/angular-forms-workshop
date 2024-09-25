@@ -44,7 +44,6 @@ export class TabsMainComponent {
   onSave() {
     if (this.isFormValid()) {
       this.robotFormService.saveData();
-      this.robotData = this.robotFormService.robotData;
     }
   }
 

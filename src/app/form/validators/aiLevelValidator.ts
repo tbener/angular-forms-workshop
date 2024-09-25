@@ -1,5 +1,4 @@
 import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { RobotForm } from '../robot-form.interface';
 
 export function aiLevelValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

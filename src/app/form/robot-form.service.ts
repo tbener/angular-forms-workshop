@@ -1,20 +1,21 @@
-import { ChangeDetectorRef, inject, Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Robot } from '../models/robot.model';
 import { fakeRobotData } from '../models/robot.mock';
-import { aiLevelValidator, modelToAiLevelValidator } from './validators/aiLevelValidator';
+import { modelToAiLevelValidator } from './validators/aiLevelValidator';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RobotFormService {
+
     private fb = new FormBuilder();
 
-    robotData: Robot = fakeRobotData;
+    public robotData = signal<Robot>(fakeRobotData);
 
-    robotForm = this.fb.group({
+    robotForm = this.fb.nonNullable.group({
         name: ['', Validators.required],
-        technicalSpecs: this.fb.group({
+        technicalSpecs: this.fb.nonNullable.group({
             model: [0, Validators.required],
             weight: [0, Validators.required],
             batteryLife: [0, Validators.required]
@@ -24,13 +25,13 @@ export class RobotFormService {
             programmingLanguages: [[''], Validators.required],
             canFly: [false]
         })
-    }, { validators: modelToAiLevelValidator() }); 
+    }, { validators: modelToAiLevelValidator() });
 
     getFormInit() {
         this.loadData();
         return this.robotForm;
     }
-    
+
     getForm() {
         return this.robotForm;
     }
@@ -44,7 +45,7 @@ export class RobotFormService {
     }
 
     loadData() {
-        const robotData = this.robotData;
+        const robotData = this.robotData();
 
         // Patch the form with the fake data
         this.robotForm.setValue({
@@ -78,12 +79,15 @@ export class RobotFormService {
 
             console.log('Saving robot data:', savedRobotData);
 
-            this.robotData = savedRobotData;
+            this.robotData.set(savedRobotData);
         } else {
             console.error('Form is invalid. Cannot save data.');
         }
     }
 
+    saveSubForm(formToSave: FormGroup) {
+        this.robotData.update(robot => ({...robot, ...formToSave.value}));
+    }
 
 }
 
