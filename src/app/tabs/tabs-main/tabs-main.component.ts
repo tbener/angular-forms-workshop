@@ -13,18 +13,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './tabs-main.component.scss',
 })
 export class TabsMainComponent {
-  // private cdr = inject(ChangeDetectorRef);
-  // fb = inject(FormBuilder);
-
-  // private robotFormService = inject(RobotFormService);
-  form!: FormGroup;
+  
 
   onSave() {
     console.log('Saving form...');
   }
 
-  isInvalid(fieldName: string): boolean {
-    return this.form.get(fieldName)?.invalid && this.form.get(fieldName)?.touched || false;
-  }
 
 }
