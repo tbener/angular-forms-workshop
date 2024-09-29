@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RobotFormService } from '../../form/robot-form.service';
 import { CommonModule } from '@angular/common';
@@ -13,38 +13,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './tabs-main.component.scss',
 })
 export class TabsMainComponent {
-  private cdr = inject(ChangeDetectorRef);
-  fb = inject(FormBuilder);
+  // private cdr = inject(ChangeDetectorRef);
+  // fb = inject(FormBuilder);
 
-  private robotFormService = inject(RobotFormService);
-  form = this.robotFormService.getFormInit();
-
-  robotData = this.robotFormService.robotData;
-
-  constructor() {
-    this.form.controls.capabilities.statusChanges
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => {
-        this.cdr.detectChanges();
-      })
-  }
-
-  isFormValid(): boolean {
-    return this.form.valid;
-  }
-
-  get tab1form() {
-    return this.robotFormService.getTechnicalSpecsForm();
-  }
-
-  get tab2form() {
-    return this.robotFormService.getCapabilitiesForm();
-  }
+  // private robotFormService = inject(RobotFormService);
+  form!: FormGroup;
 
   onSave() {
-    if (this.isFormValid()) {
-      this.robotFormService.saveData();
-    }
+    console.log('Saving form...');
   }
 
   isInvalid(fieldName: string): boolean {

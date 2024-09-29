@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function aiLevelValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -25,7 +25,6 @@ export function modelToAiLevelValidator(): ValidatorFn {
             if (model.value < 10 && aiLevel.value > 5) {
                 aiLevel.setErrors({ aiLevelInvalid: true });
             } else if (aiLevel.errors && aiLevel.errors['aiLevelInvalid']) {
-                // If the specific error is set, remove it when the condition is not met
                 const { aiLevelInvalid, ...otherErrors } = aiLevel.errors;
                 aiLevel.setErrors(Object.keys(otherErrors).length ? otherErrors : null);
             }

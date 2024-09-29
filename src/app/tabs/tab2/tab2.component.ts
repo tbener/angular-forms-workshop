@@ -1,20 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { RobotFormService } from '../../form/robot-form.service';
-import { CommonModule, NgIf } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule],
   templateUrl: './tab2.component.html',
   styleUrl: './tab2.component.scss',
 })
 export class Tab2Component {
-  private robotFormService = inject(RobotFormService);
-  form = this.robotFormService.getCapabilitiesForm();
-
-  isInvalid(fieldName: string): boolean {
-    return this.form.get(fieldName)?.invalid && this.form.get(fieldName)?.touched || false;
-  }
+  
 }
