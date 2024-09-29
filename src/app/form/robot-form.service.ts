@@ -27,9 +27,8 @@ export class RobotFormService {
         })
     }, { validators: modelToAiLevelValidator() });
 
-    getFormInit() {
+    constructor() {
         this.loadData();
-        return this.robotForm;
     }
 
     getForm() {
@@ -47,7 +46,6 @@ export class RobotFormService {
     loadData() {
         const robotData = this.robotData();
 
-        // Patch the form with the fake data
         this.robotForm.setValue({
             name: robotData.name,
             technicalSpecs: {

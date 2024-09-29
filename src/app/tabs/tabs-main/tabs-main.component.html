@@ -1,11 +1,10 @@
 <div class="container mt-5">
     <div class="row">
-        <!-- Left side: Form and navigation -->
         <form [formGroup]="form" class="mb-4">
             <div class="mb-3">
                 <label for="name" class="form-label">Robot Name</label>
-                <input id="name" formControlName="name" class="form-control" placeholder="Enter robot name" />
-                <div *ngIf="isInvalid('name')" class="invalid-feedback">
+                <input id="name" formControlName="name" [class.is-invalid]="isInvalid('name')" class="form-control" placeholder="Enter robot name" />
+                <div class="invalid-feedback">
                     Robot name is required.
                 </div>
             </div>
@@ -28,16 +27,18 @@
 
         <h5>Form Status</h5>
         <ul class="list-group">
-            <!-- General Form Info -->
             <li class="list-group-item">
-                <strong>Form Value:</strong>
+                <b>Form Value:</b>
                 <p>{{ form.value | json }}</p>
             </li>
             <li class="list-group-item">
-                <strong>Form Valid:</strong> {{ form.valid }}
+                <b>Is Valid:</b> {{ form.valid }}
             </li>
             <li class="list-group-item">
-                <strong>Form Dirty:</strong> {{ form.dirty }}
+                <b>Is Dirty:</b> {{ form.dirty }}
+            </li>
+            <li class="list-group-item">
+                <b>Touched:</b> {{ form.touched }}
             </li>
 
             <li class="list-group-item">

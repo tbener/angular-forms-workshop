@@ -17,7 +17,7 @@ export class TabsMainComponent {
   fb = inject(FormBuilder);
 
   private robotFormService = inject(RobotFormService);
-  form = this.robotFormService.getFormInit();
+  form = this.robotFormService.getForm();
 
   robotData = this.robotFormService.robotData;
 
