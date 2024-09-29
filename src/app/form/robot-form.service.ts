@@ -39,5 +39,10 @@ export class RobotFormService {
         return this.robotForm.controls.capabilities;
     }
 
+    saveData() {
+        console.log('Form Value: ', this.robotForm.value);
+    }
+
+
 }
 
