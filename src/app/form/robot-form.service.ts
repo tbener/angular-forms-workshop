@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Robot } from '../models/robot.model';
 import { fakeRobotData } from '../models/robot.mock';
 import { modelToAiLevelValidator } from './validators/aiLevelValidator';
@@ -65,7 +65,7 @@ export class RobotFormService {
         if (this.robotForm.valid) {
             const formValues = this.robotForm.value;
 
-            const savedRobotData: Robot = {
+            const robot: Robot = {
                 name: formValues.name!,
                 model: formValues.technicalSpecs?.model!,
                 weight: formValues.technicalSpecs?.weight!,
@@ -75,9 +75,9 @@ export class RobotFormService {
                 canFly: formValues.capabilities?.canFly!
             };
 
-            console.log('Saving robot data:', savedRobotData);
+            console.log('Saving robot data:', robot);
 
-            this.robotData.set(savedRobotData);
+            this.robotData.set(robot);
         } else {
             console.error('Form is invalid. Cannot save data.');
         }

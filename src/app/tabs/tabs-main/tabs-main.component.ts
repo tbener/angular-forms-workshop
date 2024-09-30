@@ -14,7 +14,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class TabsMainComponent {
   private cdr = inject(ChangeDetectorRef);
-  fb = inject(FormBuilder);
 
   private robotFormService = inject(RobotFormService);
   form = this.robotFormService.getForm();
