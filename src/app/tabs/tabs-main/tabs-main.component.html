@@ -1,9 +1,21 @@
 <div class="container">
     <div class="row">
-        
+        <form [formGroup]="form" class="mb-4">
+            <div class="mb-3">
+                <label for="name" class="form-label">Robot Name</label>
+                <input id="name" formControlName="name" [class.is-invalid]="form.controls.name.invalid"
+                    class="form-control" placeholder="Enter robot name" />
+                <div class="invalid-feedback">
+                    Robot name is required.
+                </div>
+            </div>
+        </form>
+
         <nav class="nav mb-4">
-            <a routerLink="tab1" class="nav-link btn me-2">Tab 1</a>
-            <a routerLink="tab2" class="nav-link btn">Tab 2</a>
+            <a routerLink="tab1" class="nav-link btn me-2"
+            [class.has-errors]="form.controls.technicalSpecs.invalid">Technical Spec</a>
+            <a routerLink="tab2" class="nav-link btn"
+            [class.has-errors]="form.controls.capabilities.invalid">Capabilities</a>
         </nav>
 
         <div class="container mb-4">
@@ -14,5 +26,27 @@
             <button type="button" class="btn btn-success" (click)="onSave()">Save</button>
         </div>
     </div>
+
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <b>Form Value:</b>
+                <p>{{ form.value | json }}</p>
+            </li>
+            <li class="list-group-item">
+                <b>Is Valid:</b> {{ form.valid }}
+            </li>
+            <li class="list-group-item">
+                <b>Is Dirty:</b> {{ form.dirty }}
+            </li>
+            <li class="list-group-item">
+                <b>Touched:</b> {{ form.touched }}
+            </li>
+            
+            <li class="list-group-item">
+                <strong>Robot saved data:</strong>
+                <p>{{ robotData() | json }}</p>
+            </li>
+        </ul>
 
 </div>
